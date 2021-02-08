@@ -1,14 +1,9 @@
-from celery import Celery
+from flask import Flask
+from flask import render_template
 
-import app.app_initializer as app_initializer
-
-
-
-app = app_initializer.create_app_load_configurations() 
-client = app_initializer.init_celery(app)
+app = Flask(__name__)
 
 
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+@app.route("/")
+def hello_world():
+    return render_template("index.html")
